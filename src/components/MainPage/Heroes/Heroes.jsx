@@ -1,23 +1,10 @@
 import React, { useState } from 'react';
 import './heroes.scss';
+import Stars from '../../Stars/Stars.jsx';
+import {heroes as heroesData} from "../../../heroes/heroes.js";
 
-const heroesData = [
-    // Приклад даних про героїв
-    { id: 1, name: 'Василь Василенко', position: 'Посада офісного філду - "Сільпо"', img: 'https://pishi.pro/assets/images/resources/19362/760x550/2b0e75db72cd6957ee3d511306bb42325253e6e6.jpg' },
-    { id: 2, name: 'Іван Іваненко', position: 'Посада офісного філду - "Холдинг"', img: 'https://pishi.pro/assets/images/resources/19362/760x550/2b0e75db72cd6957ee3d511306bb42325253e6e6.jpg' },
-    { id: 3, name: 'Петро Петрененко', position: 'Посада офісного філду - Логістики', img: 'https://pishi.pro/assets/images/resources/19362/760x550/2b0e75db72cd6957ee3d511306bb42325253e6e6.jpg' },
-    { id: 1, name: 'Василь Василенко', position: 'Посада офісного філду - "Сільпо"', img: 'https://pishi.pro/assets/images/resources/19362/760x550/2b0e75db72cd6957ee3d511306bb42325253e6e6.jpg' },
-    { id: 2, name: 'Іван Іваненко', position: 'Посада офісного філду - "Холдинг"', img: 'https://pishi.pro/assets/images/resources/19362/760x550/2b0e75db72cd6957ee3d511306bb42325253e6e6.jpg' },
-    { id: 3, name: 'Петро Петрененко', position: 'Посада офісного філду - Логістики', img: 'https://pishi.pro/assets/images/resources/19362/760x550/2b0e75db72cd6957ee3d511306bb42325253e6e6.jpg' },
-    { id: 1, name: 'Василь Василенко', position: 'Посада офісного філду - "Сільпо"', img: 'https://pishi.pro/assets/images/resources/19362/760x550/2b0e75db72cd6957ee3d511306bb42325253e6e6.jpg' },
-    { id: 2, name: 'Іван Іваненко', position: 'Посада офісного філду - "Холдинг"', img: 'https://pishi.pro/assets/images/resources/19362/760x550/2b0e75db72cd6957ee3d511306bb42325253e6e6.jpg' },
-    { id: 3, name: 'Петро Петрененко', position: 'Посада офісного філду - Логістики', img: 'https://pishi.pro/assets/images/resources/19362/760x550/2b0e75db72cd6957ee3d511306bb42325253e6e6.jpg' },
-    { id: 1, name: 'Василь Василенко', position: 'Посада офісного філду - "Сільпо"', img: 'https://pishi.pro/assets/images/resources/19362/760x550/2b0e75db72cd6957ee3d511306bb42325253e6e6.jpg' },
-    { id: 2, name: 'Іван Іваненко', position: 'Посада офісного філду - "Холдинг"', img: 'https://pishi.pro/assets/images/resources/19362/760x550/2b0e75db72cd6957ee3d511306bb42325253e6e6.jpg' },
-    { id: 3, name: 'Петро Петрененко', position: 'Посада офісного філду - Логістики', img: 'https://pishi.pro/assets/images/resources/19362/760x550/2b0e75db72cd6957ee3d511306bb42325253e6e6.jpg' },
-];
 
-const Heroes = () => {
+const Heroes = ({onHeroClick}) => {
     const [currentPage, setCurrentPage] = useState(1);
     const heroesPerPage = 9;
     const totalPages = Math.ceil(heroesData.length / heroesPerPage);
@@ -39,7 +26,7 @@ const Heroes = () => {
     };
 
     return (
-        <div className="heroes-container">
+        <div className="heroes-container starry-background">
             <h1 className="title">НЕБЕСНІ ВОЇНИ РОДИНИ ФОЗЗІ ГРУП</h1>
             <div className="search-panel">
                 <input type="text" placeholder="ПІБ" />
@@ -56,8 +43,9 @@ const Heroes = () => {
                         <img src={hero.img} alt={hero.name} />
                         <div className="hero-info">
                             <h2>{hero.name}</h2>
+                            <p>{hero.business}</p>
                             <p>{hero.position}</p>
-                            <button>ВШАНУВАТИ ГЕРОЯ</button>
+                            <button onClick={() => onHeroClick(hero.id)}>ВШАНУВАТИ ГЕРОЯ</button>
                         </div>
                     </div>
                 ))}

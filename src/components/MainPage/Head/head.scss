@@ -1,10 +1,4 @@
 // Define the colors used in the gradient
-$top-color: #001F54;
-$middle-color: #2A52BE;
-$mid-middle-color: #5775c7;
-$bottom-color: #FFF7A8;
-$super-bottom-color: #fbed6b;
-
 .head {
     position: fixed;
     height: 100vh;
@@ -14,25 +8,10 @@ $super-bottom-color: #fbed6b;
     align-items: center;
 }
 
-.starry-background {
-    position: relative;
-    width: 100%;
+.head-back {
     height: 100vh;
-    background: linear-gradient(to bottom, $top-color, $middle-color, $mid-middle-color, $bottom-color, $super-bottom-color);
-    background-image: 
-     url('../../../img/back.jpg'), 
-     linear-gradient(to bottom, $top-color, $middle-color, $mid-middle-color, $bottom-color, $super-bottom-color);
-    background-blend-mode: overlay;
-    filter: blur(0.5px);
-    transition: opacity 0.3s ease;
 }
 
-.star {
-    position: absolute;
-    border-radius: 50%;
-    box-shadow: 0 0 6px #fff, 0 0 12px #fff;
-    animation: twinkle 2s infinite;
-}
 
 .text-content {
     position: absolute;
@@ -73,15 +52,6 @@ $super-bottom-color: #fbed6b;
 
     &.second {
         color: #4d577f;
-    }
-}
-
-@keyframes twinkle {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.5;
     }
 }
 

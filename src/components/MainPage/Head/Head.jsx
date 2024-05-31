@@ -1,40 +1,12 @@
 import React from 'react';
+import Stars from '../../Stars/Stars';
 import './head.scss';
-
-const generateRandomStars = (count) => {
-    const stars = [];
-    for (let i = 0; i < count; i++) {
-        const size = `${Math.random() * 3 + 1}px`; // Sizes between 1px and 4px
-        const color = '#fff';
-        const x = `${Math.random() * 100}vw`;
-        const y = `${Math.random() * 100}vh`;
-        const delay = `${Math.random() * 5}s`;
-
-        stars.push({ size, color, x, y, delay });
-    }
-    return stars;
-};
-
-const stars = generateRandomStars(100);
 
 const Head = ({ scrollY }) => {
     return (
         <div className="head">
-            <div className="starry-background">
-                {stars.map((star, index) => (
-                    <div
-                        key={index}
-                        className="star"
-                        style={{
-                            width: star.size,
-                            height: star.size,
-                            backgroundColor: star.color,
-                            top: star.y,
-                            left: star.x,
-                            animationDelay: star.delay,
-                        }}
-                    />
-                ))}
+            <div className="starry-background head-back">
+            <Stars />
                 <p className="top-text">ГЕРОЇ НЕ ВМИРАЮТЬ!</p>
                 <div className="text-content">
                     <h2 className="subtitle">ПОРТАЛ</h2>

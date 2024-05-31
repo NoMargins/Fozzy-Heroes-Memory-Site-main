@@ -1,3 +1,5 @@
+@import "./variables.scss";
+
 * {
   box-sizing: border-box;
 }
@@ -32,6 +34,18 @@ body, html {
   &.head {
     color: #2A52BE;
   }
+}
+
+.starry-background {
+  position: relative;
+  width: 100%;
+  background: linear-gradient(to bottom, $top-color, $middle-color, $mid-middle-color, $bottom-color, $super-bottom-color);
+  background-image: 
+   url('./img/back.jpg'), 
+   linear-gradient(to bottom, $top-color, $middle-color, $mid-middle-color, $bottom-color, $super-bottom-color);
+  background-blend-mode: overlay;
+  filter: blur(0.5px);
+  transition: opacity 0.3s ease;
 }
 
 @keyframes blink {

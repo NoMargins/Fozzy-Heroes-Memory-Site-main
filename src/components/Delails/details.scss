@@ -1,0 +1,135 @@
+.details {
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
+    padding: 20px;
+    background-size: cover;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.details-content {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1200px;
+    z-index: 10;
+}
+
+.hero-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 20px;
+    flex: 1;
+}
+
+.hero-image img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.hero-image p {
+    margin: 5px 0;
+    text-align: center;
+    color: #bfc3d5;
+}
+
+.hero-description {
+    flex: 2;
+    background: rgb(255, 255, 255, 0.75);
+    padding: 20px;
+    border-radius: 10px;
+    color: #1c1d26;
+    margin-bottom: 20px;
+}
+
+.hero-description p {
+    margin: 10px 0;
+    line-height: 24px;
+}
+
+.comment-form {
+    width: 100%;
+    max-width: 600px;
+    background: rgba(0, 0, 0, 0.6);
+    margin: auto;
+    padding: 20px;
+    padding-top: 8px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    z-index: 11;
+
+}
+
+.comment-form h3 {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.comment-form input,
+.comment-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: none;
+}
+
+.comment-form button {
+    display: block;
+    width: 50%;
+    min-width: 100px;
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: auto;
+    margin-top: 10px;
+    text-transform: uppercase;
+    &:hover {
+        background-color: #0056b3;
+    }
+
+}
+
+.comment-form button:hover {
+    background: #0056b3;
+}
+
+.comments {
+    width: 100%;
+    max-width: 600px;
+    z-index: 12;
+    margin: auto;
+}
+
+.comment {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.comment p {
+    margin: 5px 0;
+}
+
+.return-btn {
+    display: block;
+    width: 130px;
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    // margin-top: 10px;
+    margin-bottom: 48px;
+    text-transform: uppercase;
+}
