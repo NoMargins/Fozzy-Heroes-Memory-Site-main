@@ -1,21 +1,48 @@
 .heroes-container {
-    padding: 2rem;
+    position: relative;
+    width: 100vw;
+    padding: 2rem 0;
     text-align: center;
     color: #FFF;
-    // background-color: #001F54;
+    background-image: url('https://preview.8.co.ua/foto/sky-1.png');
+    background-repeat: repeat;
+    backdrop-filter: blur(10px);
     z-index: 100;
+
+    @media screen and (max-width: 768px) {
+        padding: 1.5rem;
+    }
 }
 
 .title {
+    max-width: 1000px;
+    height: 60px;
+    line-height: 60px;
+    margin: 0 auto 20px;
     font-size: 2rem;
-    margin-bottom: 1rem;
     letter-spacing: 1px;
+    border-radius: 50px;
+    background: rgba(71, 83, 103, 0.372);
+
+    @media screen and (max-width: 768px) {
+        margin: 0;
+        overflow: auto;
+    }
 }
 
 .search-panel {
     display: flex;
     justify-content: center;
-    margin-bottom: 1rem;
+    align-items: center;
+    margin-bottom: 26px;
+
+    input, select {
+        background-color: #004aad;
+        width: 200px;
+        border-radius: 20px;
+        color: #FFF;
+        text-align: center;
+    }
 
     input, select, button {
         margin: 0 0.5rem;
@@ -24,60 +51,111 @@
     }
 
     button {
+        width: 100px;
         background-color: #FFD700;
         border: none;
         cursor: pointer;
+        border-radius: 20px;
 
         &:hover {
             background-color: #FFA500;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        margin: 16px auto 20px;
+
+        & input {
+            font-size: 16px;
         }
     }
 }
 
 .heroes-gallery {
     display: grid;
+    max-width: 70%;
+    margin: 10px auto;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
 
     @media screen and (max-width: 768px) {
         grid-template-columns: repeat(1, 1fr);
-    }
+        max-width: 80%;
     }
 
+    @media screen and (max-width: 1100px) and (min-width: 769px) {
+        max-width: 90%;
+    }
+}
 
 .hero-profile {
-    background-color: #FFF;
+    display: flex;
+    flex-direction: column;
     border-radius: 10px;
     overflow: hidden;
-    color: #000;
+    color: #fff;
 
     img {
-        width: 100%;
         height: auto;
     }
 
     .hero-info {
-        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
         text-align: center;
+        padding: 8px;
+        background-color: rgba(0, 0, 0, 0.3);
+        height: 100%;
+
+        h2, p {
+            margin: 0;
+            text-align: center;
+        }
+
+        p {
+            line-height: 20px;
+            flex-grow: 1;
+        }
+
+        button {
+            margin-top: 10px;
+        }
 
         h2 {
             font-size: 1.25rem;
             margin: 0.5rem 0;
+            text-transform: uppercase;
+            color: #f0e735;
         }
 
         p {
-            font-size: 1rem;
+            font-size: 20px;
             margin: 0.5rem 0;
+
+            @media screen and (max-width: 768px) {
+                font-size: 18px;
+                margin: 0;
+            }
         }
 
         button {
-            background-color: #FFD700;
+            width: 100%;
+            background-color: #fff;
             border: none;
+            border-radius: 20px;
             padding: 0.5rem 1rem;
             cursor: pointer;
+            text-transform: uppercase;
 
             &:hover {
                 background-color: #FFA500;
+                transition: background-color 0.5s ease;
+            }
+
+            @media screen and (max-width: 768px){
+                margin: 16px auto;
             }
         }
     }
@@ -109,4 +187,79 @@
     span {
         font-size: 1rem;
     }
+}
+
+@media screen and (max-width: 480px) {
+    .title {
+        font-size: 2rem;
+    }
+
+    .search-panel {
+        margin: 16px auto 0;
+
+        input, select {
+            width: 100%;
+            margin-bottom: 0.5rem;
+        }
+
+        button {
+            width: 100%;
+        }
+    }
+
+    .heroes-gallery {
+        max-width: 100%;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .hero-profile {
+        img {
+            max-width: 100%;
+        }
+    }
+}
+
+.search-box {
+    position: relative;
+}
+
+.dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #ccc;
+    z-index: 1000;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.dropdown li {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.dropdown li:hover {
+    background-color: #ddd;
+}
+
+.no-heroes-message {
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.5); /* Optional: for better visibility */
+    width: 50%;
+    margin: 20px auto; /* Центрування по горизонталі */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100px; /* Optional: to ensure it has some height */
 }

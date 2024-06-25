@@ -1,0 +1,41 @@
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #2a3563;
+    color: white;
+    font-family: "Neue";
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // height: 200px; /* Adjust the height as needed */
+    
+    & p {
+        // font-family: "Neue";
+        color: white;
+        text-transform: uppercase;
+        line-height: 24px;
+    }
+
+    & button {
+        // height: 50px;
+        padding: 16px;
+        // line-height: 50px;
+        margin: 20px auto;
+        border: 1px solid white;
+        border-radius: 20px;
+        background: none;
+        color: white;
+        font-family: "Neue";
+        font-size: 18px;
+        letter-spacing: 3px;
+        &:hover {
+            cursor: pointer;
+            background-color: #FFA500;
+            transition: background-color 0.5s ease;
+        }
+    }
+}

@@ -5,8 +5,10 @@ import './head.scss';
 const Head = ({ scrollY }) => {
     return (
         <div className="head">
-            <div className="starry-background head-back">
-            <Stars />
+            {/* <div className="starry-background head-back"> */}
+            <div className="head-back">
+                {/* <div className='head-stars' style={{position: 'relative'}}> */}
+            {/* <Stars /> */}
                 <p className="top-text">ГЕРОЇ НЕ ВМИРАЮТЬ!</p>
                 <div className="text-content">
                     <h2 className="subtitle">ПОРТАЛ</h2>
@@ -20,7 +22,8 @@ const Head = ({ scrollY }) => {
                         <path d="M12 16L6 8H18L12 16Z" fill="currentColor" />
                     </svg>
                 </div> */}
-            </div>
+                </div>
+            {/* </div> */}
         </div>
     );
 };

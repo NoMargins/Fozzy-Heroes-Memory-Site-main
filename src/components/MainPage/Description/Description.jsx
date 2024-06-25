@@ -4,6 +4,7 @@ import './description.scss';
 const Description = () => {
     return (
         <div className="description-container">
+          <img src='https://preview.8.co.ua/foto/star.png' className='star' alt='star' style={{top: 0, left: 0}}/>
             <div className="box">
                 <p className="text">
                     <br />* * *<br />
@@ -31,6 +32,9 @@ const Description = () => {
                     * * *
                 </p>
             </div>
+        <img src='https://preview.8.co.ua/foto/star.png' alt='star' className='star' style={{right: 0, bottom: 0}}  />
+
+
             {/* <div className="scroll-down">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 16L6 8H18L12 16Z" fill="currentColor" />

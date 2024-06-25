@@ -5,7 +5,7 @@
     padding: 20px;
     background-size: cover;
     color: white;
-    font-family: Arial, sans-serif;
+    // font-family: Arial, sans-serif;
 }
 
 .details-content {
@@ -23,33 +23,37 @@
     align-items: center;
     margin-right: 20px;
     flex: 1;
-}
-
-.hero-image img {
-    border-radius: 50%;
-    width: 150px;
-    height: 150px;
+    
+    & img {
+    width: 260px;
     object-fit: cover;
-}
-
-.hero-image p {
+    }
+    
+    & p {
     margin: 5px 0;
     text-align: center;
     color: #bfc3d5;
+    }
+
+    & h2 {
+        margin: 20px auto 0;
+        line-height: 25px;
+    }
 }
 
 .hero-description {
     flex: 2;
-    background: rgb(255, 255, 255, 0.75);
+    background: rgb(255, 255, 255, 0.44);
     padding: 20px;
     border-radius: 10px;
     color: #1c1d26;
     margin-bottom: 20px;
+    min-height: 382px;
 }
 
 .hero-description p {
     margin: 10px 0;
-    line-height: 24px;
+    line-height: 1.25rem;
 }
 
 .comment-form {
@@ -84,22 +88,22 @@
     width: 50%;
     min-width: 100px;
     padding: 10px;
-    background: #007bff;
+    background: #FFD700;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 20px;
     cursor: pointer;
     margin: auto;
     margin-top: 10px;
     text-transform: uppercase;
     &:hover {
-        background-color: #0056b3;
+        background-color: #FFA500;
     }
 
 }
 
 .comment-form button:hover {
-    background: #0056b3;
+    background: #e2b511;
 }
 
 .comments {
@@ -122,14 +126,18 @@
 
 .return-btn {
     display: block;
-    width: 130px;
+    max-width: 152px;
     padding: 10px;
-    background: #007bff;
+    background: #FFD700;
     color: white;
     border: none;
-    border-radius: 50px;
+    border-radius: 20px;
     cursor: pointer;
     // margin-top: 10px;
     margin-bottom: 48px;
     text-transform: uppercase;
+
+    &:hover {
+       background: #e2b511;
+    }
 }
