@@ -3,7 +3,7 @@
 /* Перший шрифт */
 @font-face {
   font-family: 'SilpoBold';
-  src: url('https://preview.8.co.ua/fonts/Comfortaa-Bold.ttf') format('truetype');
+  src: url('./fonts/Comfortaa-Bold.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
@@ -11,19 +11,18 @@
 /* Другий шрифт */
 @font-face {
   font-family: 'Silpo';
-  src: url('https://preview.8.co.ua/fonts/SansRoundedC.otf') format('opentype');
+  src: url('./fonts/SilpoRounded-Regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
 /* Третій шрифт */
 @font-face {
-  font-family: 'Silpo-medium';
-  src: url('https://preview.8.co.ua/fonts/SansRoundedC_0.otf') format('opentype');
+  font-family: 'SilpoMedium';
+  src: url('./fonts/SansRoundedC_0.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
-
 
 * {
   box-sizing: border-box;
@@ -41,10 +40,11 @@ body, html {
 #root {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  // min-height: 100vh;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
+  background-color: #2a3564;
 }
 
 .scroll-down {

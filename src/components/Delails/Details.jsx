@@ -36,46 +36,55 @@ const Details = () => {
 
     return (
         <>
-        <div className="details starry-background">
-            <div className="return-btn" onClick={() => navigate("/")}>← На головну</div>
-            <div className="details-content">
-                <div className="hero-image">
-                    <img src={heroData.img} alt={heroData.name} />
-                    <h2 style={{ textAlign: "center" }}>{heroData.name}</h2>
-                    <p>{heroData.position}</p>
-                </div>
-                <div className="hero-description">
-                    <p dangerouslySetInnerHTML={{ __html: heroData.description }}></p>
-                </div>
-            </div>
-            {comments.length > 0 && (
-                <div className="comments">
-                    {comments.map((c, index) => (
-                        <div key={index} className="comment">
-                            <p><strong>{c.name}</strong></p>
-                            <p>{c.text}</p>
+            <div className="details">
+                <div className="return-btn" onClick={() => navigate("/")}>← На головну</div>
+                <div className="details-content">
+                    <div className="hero-image">
+                        <img src={heroData.img} alt={heroData.name} />
+                        <div className='hero-info'>
+                            {/* <img src="https://preview.8.co.ua/foto/stars.svg" alt='stars' />  */}
+                            <h2 style={{ textAlign: "center" }}>{heroData.name}</h2>
+                            <p>{heroData.birthday} - {heroData.deathday}</p>
+                            <p>{heroData.position}</p>
+                            <p dangerouslySetInnerHTML={{ __html: heroData.division }}></p>
                         </div>
-                    ))}
-                </div>
-            )}
+                    </div>
+                    <div className='together'>
+                        <div className="hero-description">
+                            <p dangerouslySetInnerHTML={{ __html: heroData.description }}></p>
+                        </div>
+                        {comments.length > 0 && (
+                            <div className="comments">
+                                {comments.map((c, index) => (
+                                    <div key={index} className="comment">
+                                        <p><strong>{c.name}</strong></p>
+                                        <p>{c.text}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
                         <div className="comment-form">
-                <h3>Залиште слова вдячності чи світлі спогади про Сміливовершника:</h3>
-                <form onSubmit={handleSubmit}>
-                    <input
-                        type="text"
-                        placeholder="Ваше ім'я"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                    />
-                    <textarea
-                        placeholder="Коментар"
-                        value={comment}
-                        style={{ height: "100px" }}
-                        onChange={(e) => setComment(e.target.value)}
-                    ></textarea>
-                    <button type="submit">Надіслати</button>
-                </form>
-            </div>
+                            <h3>Залиште слова вдячності чи світлі спогади про Сміливовершника:</h3>
+                            <form onSubmit={handleSubmit}>
+                                <input
+                                    type="text"
+                                    placeholder="Ваше ім'я"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                    required
+                                />
+                                <textarea
+                                    placeholder="Коментар"
+                                    value={comment}
+                                    style={{ height: "100px" }}
+                                    onChange={(e) => setComment(e.target.value)}
+                                    required
+                                ></textarea>
+                                <button type="submit">Надіслати</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
             <Footer />
         </>

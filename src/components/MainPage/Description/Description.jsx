@@ -4,7 +4,9 @@ import './description.scss';
 const Description = () => {
     return (
         <div className="description-container">
-          <img src='https://preview.8.co.ua/foto/star.png' className='star' alt='star' style={{top: 0, left: 0}}/>
+        <img src='https://preview.8.co.ua/foto/star.png' alt='star' className='star-one' style={{left: 0, top: 0, width: '20px', height: '20px'}}  />
+        <img src='https://preview.8.co.ua/foto/star.png' alt='star' className='star-one' style={{right: 0, top: 0, width: '20px', height: '20px'}}  />
+
             <div className="box">
                 <p className="text">
                     <br />* * *<br />
@@ -15,7 +17,7 @@ const Description = () => {
                     <br />
                     <br />
                     Але нещадна війна забирає найкращих з нас, 
-                    хто поставив своє життя на кін за мрію всіх українців -
+                    хто поставив своє життя на кін за мрію всіх українців –
                     свободу, незалежність та мирне майбутнє наших дітей.
                     <br />
                     <br />
@@ -26,13 +28,14 @@ const Description = () => {
                     про кожного небесного воїна-перевершника, який назавжди став символом мужності та самопожертви.
                     <br />
                     <br />
-                    Шануємо героїв та обіцяємо не полишати їхню справу – вони живуть у наших серцях, а ми продовжуємо боротися.
+                    Шануємо героїв та обіцяємо не полишати їхню справу – вони живуть у наших серцях, <br/> а ми продовжуємо боротися.
                     <br />
                     <br />
                     * * *
                 </p>
             </div>
-        <img src='https://preview.8.co.ua/foto/star.png' alt='star' className='star' style={{right: 0, bottom: 0}}  />
+            <img src='https://preview.8.co.ua/foto/star.png' alt='star' className='star-one' style={{right: 0, bottom: 0, width: '20px', height: '20px'}}  />
+        <img src='https://preview.8.co.ua/foto/star.png' alt='star' className='star-one' style={{left: 0, bottom: 0, width: '20px', height: '20px'}}  />
 
 
             {/* <div className="scroll-down">

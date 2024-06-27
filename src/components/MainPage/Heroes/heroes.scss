@@ -1,10 +1,11 @@
 .heroes-container {
     position: relative;
     width: 100vw;
+    min-height: 100vh;
     padding: 2rem 0;
     text-align: center;
     color: #FFF;
-    background-image: url('https://preview.8.co.ua/foto/sky-1.png');
+    background-image: url('https://preview.8.co.ua/foto/shiningSky.gif');
     background-repeat: repeat;
     backdrop-filter: blur(10px);
     z-index: 100;
@@ -16,9 +17,10 @@
 
 .title {
     max-width: 1000px;
-    height: 60px;
-    line-height: 60px;
+    height: 50px;
+    line-height: 50px;
     margin: 0 auto 20px;
+    font-family: "Font";
     font-size: 2rem;
     letter-spacing: 1px;
     border-radius: 50px;
@@ -27,6 +29,7 @@
     @media screen and (max-width: 768px) {
         margin: 0;
         overflow: auto;
+        font-size: 1.2rem;
     }
 }
 
@@ -73,7 +76,7 @@
 
 .heroes-gallery {
     display: grid;
-    max-width: 70%;
+    max-width: 80%;
     margin: 10px auto;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
@@ -81,6 +84,10 @@
     @media screen and (max-width: 768px) {
         grid-template-columns: repeat(1, 1fr);
         max-width: 80%;
+
+    //    & img {
+    //         height: 500px;
+    //     }
     }
 
     @media screen and (max-width: 1100px) and (min-width: 769px) {
@@ -95,9 +102,9 @@
     overflow: hidden;
     color: #fff;
 
-    img {
-        height: auto;
-    }
+& img {
+    width: 100%;
+}
 
     .hero-info {
         display: flex;
@@ -124,24 +131,23 @@
         }
 
         h2 {
-            font-size: 1.25rem;
+            font-size: 22px;
             margin: 0.5rem 0;
             text-transform: uppercase;
             color: #f0e735;
         }
 
         p {
-            font-size: 20px;
-            margin: 0.5rem 0;
+            font-size: 18px;
+            margin: 4px 0;
 
             @media screen and (max-width: 768px) {
-                font-size: 18px;
                 margin: 0;
             }
         }
 
         button {
-            width: 100%;
+            width: 90%;
             background-color: #fff;
             border: none;
             border-radius: 20px;
@@ -156,6 +162,7 @@
 
             @media screen and (max-width: 768px){
                 margin: 16px auto;
+                width: 60%;
             }
         }
     }
@@ -191,19 +198,15 @@
 
 @media screen and (max-width: 480px) {
     .title {
-        font-size: 2rem;
+        font-size: 1rem;
     }
 
     .search-panel {
         margin: 16px auto 0;
 
         input, select {
-            width: 100%;
+            // width: 100%;
             margin-bottom: 0.5rem;
-        }
-
-        button {
-            width: 100%;
         }
     }
 
@@ -212,15 +215,16 @@
         grid-template-columns: repeat(1, 1fr);
     }
 
-    .hero-profile {
-        img {
-            max-width: 100%;
-        }
-    }
+    // .hero-profile {
+    //     img {
+    //         max-width: 100%;
+    //     }
+    // }
 }
 
 .search-box {
     position: relative;
+    min-width: 230px;
 }
 
 .dropdown {

@@ -1,109 +1,188 @@
 .details {
-    // display: flex;
-    // flex-direction: column;
-    // align-items: center;
+    width: 100vw;
     padding: 20px;
     background-size: cover;
     color: white;
-    // font-family: Arial, sans-serif;
+    background-image: url('https://preview.8.co.ua/foto/shiningSky.gif');
+    background-repeat: repeat;
+    backdrop-filter: blur(10px);
 }
 
 .details-content {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
+    justify-content: center;
     width: 100%;
     max-width: 1200px;
     z-index: 10;
+
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+    }
 }
 
 .hero-image {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-right: 20px;
-    flex: 1;
-    
-    & img {
-    width: 260px;
-    object-fit: cover;
+    margin-right: 10px;
+
+    @media (min-width: 769px) {
+        width: 35%; /* Встановлено ширину 35% */
     }
-    
+
+    & img {
+        width: 100%;
+        max-width: 300px;
+        object-fit: cover;
+    }
+
+    & .hero-info {
+        position: relative;
+        padding: 8px;
+        width: 100%;
+        max-width: 300px;
+        background-color: rgba(0, 0, 0, 0.4);
+        border-radius: 0 0 10px 10px;
+
+        & img {
+            position: absolute;
+            top: 0;
+        }
+    }
+
     & p {
-    margin: 5px 0;
-    text-align: center;
-    color: #bfc3d5;
+        margin: 8px 0;
+        text-align: center;
+        color: #bfc3d5;
     }
 
     & h2 {
         margin: 20px auto 0;
         line-height: 25px;
     }
+
+    @media screen and (max-width: 768px) and (min-width: 575px) {
+        flex-direction: row;
+        margin: 0 auto;
+
+        & .hero-info {
+            border-radius: 10px;
+            height: 300px;
+        }
+
+        & img {
+            margin-right: 8px;
+            height: 300px;
+        }
+
+        & p {
+            margin: 8px 0;
+        }
+    }
+
+    @media screen and (max-width: 575px) {
+        margin: 0 auto;
+
+        & img {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        & .hero-info {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    @media screen and (min-height: 768px) {
+        & h2 {
+            margin-bottom: 20px;
+        }
+
+        & p {
+            margin: 8px 0;
+            font-size: 16px;
+        }
+    }
+}
+
+.together {
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: 769px) {
+        width: 55%; /* Встановлено ширину 55% */
+    }
 }
 
 .hero-description {
-    flex: 2;
-    background: rgb(255, 255, 255, 0.44);
+    background: rgba(255, 255, 255, 0.7);
     padding: 20px;
     border-radius: 10px;
     color: #1c1d26;
     margin-bottom: 20px;
     min-height: 382px;
-}
 
-.hero-description p {
-    margin: 10px 0;
-    line-height: 1.25rem;
+    & p {
+        margin: 10px 0;
+        line-height: 1.25rem;
+        text-align: justify;
+        font-size: 18px;
+    }
+
+    @media screen and (max-width: 768px) {
+        margin-top: 16px;  
+        
+        & p {
+            margin: 0;
+        }
+    }
 }
 
 .comment-form {
     width: 100%;
     max-width: 600px;
-    background: rgba(0, 0, 0, 0.6);
-    margin: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    margin: 20px auto;
     padding: 20px;
     padding-top: 8px;
     border-radius: 10px;
-    margin-bottom: 20px;
     z-index: 11;
 
-}
-
-.comment-form h3 {
-    margin-bottom: 10px;
-    text-align: center;
-}
-
-.comment-form input,
-.comment-form textarea {
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0;
-    border-radius: 5px;
-    border: none;
-}
-
-.comment-form button {
-    display: block;
-    width: 50%;
-    min-width: 100px;
-    padding: 10px;
-    background: #FFD700;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    margin: auto;
-    margin-top: 10px;
-    text-transform: uppercase;
-    &:hover {
-        background-color: #FFA500;
+    & h3 {
+        margin-bottom: 10px;
+        text-align: center;
     }
 
-}
+    & input,
+    & textarea {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 5px;
+        border: none;
+    }
 
-.comment-form button:hover {
-    background: #e2b511;
+    & button {
+        display: block;
+        width: 50%;
+        min-width: 100px;
+        padding: 10px;
+        background: #FFD700;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        margin: auto;
+        margin-top: 10px;
+        text-transform: uppercase;
+        
+        &:hover {
+            background-color: #FFA500;
+        }
+    }
 }
 
 .comments {
@@ -111,33 +190,36 @@
     max-width: 600px;
     z-index: 12;
     margin: auto;
-}
+    margin-top: 8px;
 
-.comment {
-    background: rgba(0, 0, 0, 0.6);
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
+    .comment {
+        background: rgba(0, 0, 0, 0.6);
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
 
-.comment p {
-    margin: 5px 0;
+        & p {
+            margin: 5px 0;
+        }
+    }
 }
 
 .return-btn {
     display: block;
     max-width: 152px;
     padding: 10px;
-    background: #FFD700;
     color: white;
     border: none;
     border-radius: 20px;
     cursor: pointer;
-    // margin-top: 10px;
-    margin-bottom: 48px;
+    margin-bottom: 20px;
     text-transform: uppercase;
 
     &:hover {
-       background: #e2b511;
+        color: yellow;
+    }
+
+    @media screen and (max-width: 768px) {
+        margin-bottom: 8px;
     }
 }

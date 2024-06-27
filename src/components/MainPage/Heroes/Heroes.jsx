@@ -2,16 +2,38 @@ import React, { useState, useEffect } from 'react';
 import './heroes.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSliders } from '@fortawesome/free-solid-svg-icons';
-import Stars from '../../Stars/Stars.jsx';
 import { heroes as heroesData } from "../../../heroes/heroes.js";
+import { getUniqueBusinesses, filterHeroes, filterNames } from "../../../utils/heroesUtils.js";
 
 const Heroes = ({ onHeroClick }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [business, setBusiness] = useState('Усі бізнеси');
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredNames, setFilteredNames] = useState([]);
+    const [filteredHeroes, setFilteredHeroes] = useState(heroesData);
     const heroesPerPage = window.innerWidth < 768 ? heroesData.length : 9;
     const isDesktop = window.innerWidth >= 768;
+
+    useEffect(() => {
+        // Фільтрування героїв на основі вибраного бізнесу та пошукового запиту
+        const updateFilteredHeroes = () => {
+            if (searchQuery === '') {
+                setFilteredNames([]);
+                setFilteredHeroes(filterHeroes(heroesData, business, ''));
+            } else {
+                const names = filterNames(heroesData, searchQuery);
+                setFilteredNames(names);
+                setFilteredHeroes(filterHeroes(heroesData, business, searchQuery));
+            }
+        };
+        updateFilteredHeroes();
+    }, [searchQuery, business]);
+
+    useEffect(() => {
+        if (currentPage > totalPages) {
+            setCurrentPage(totalPages);
+        }
+    }, [filteredHeroes.length, currentPage]);
 
     const handleNextPage = () => {
         if (currentPage < totalPages) {
@@ -25,55 +47,29 @@ const Heroes = ({ onHeroClick }) => {
         }
     };
 
-    const uniqueBusinesses = ['Усі бізнеси', ...heroesData.reduce((acc, hero) => {
-        if (!acc.includes(hero.business)) {
-            acc.push(hero.business);
-        }
-        return acc;
-    }, [])];
-
     const handleSearchChange = (e) => {
         const query = e.target.value;
         setSearchQuery(query);
-
-        if (query.length > 0) {
-            const filtered = heroesData
-                .map(hero => hero.name)
-                .filter(name => name.toLowerCase().includes(query.toLowerCase()));
-            setFilteredNames(filtered);
-        } else {
-            setFilteredNames([]);
-        }
     };
 
     const handleNameClick = (name) => {
         setSearchQuery(name);
         setFilteredNames([]);
+        setFilteredHeroes(filterHeroes(heroesData, business, name));
     };
 
-    const filteredHeroes = heroesData
-        .filter(hero => 
-            (business === 'Усі бізнеси' || hero.business === business) && 
-            hero.name.toLowerCase().includes(searchQuery.toLowerCase())
-        )
-        .sort((a, b) => a.name.localeCompare(b.name, 'uk', { sensitivity: 'base' }));
+    const handleHeroClick = (id, hero) => {
+        setSearchQuery('');
+        setFilteredNames([]);
+        setFilteredHeroes(heroesData);
+        onHeroClick(id, hero);
+    };
 
+    const uniqueBusinesses = getUniqueBusinesses(heroesData);
     const totalPages = Math.ceil(filteredHeroes.length / heroesPerPage);
     const indexOfLastHero = currentPage * heroesPerPage;
     const indexOfFirstHero = indexOfLastHero - heroesPerPage;
     const currentHeroes = filteredHeroes.slice(indexOfFirstHero, indexOfLastHero);
-
-    useEffect(() => {
-        if (currentPage > totalPages) {
-            setCurrentPage(totalPages);
-        }
-    }, [totalPages, currentPage]);
-
-    useEffect(() => {
-        if (searchQuery === '') {
-            setFilteredNames([]);
-        }
-    }, [searchQuery]);
 
     return (
         <div className="heroes-container">
@@ -105,9 +101,9 @@ const Heroes = ({ onHeroClick }) => {
                 </select>
             </div>
             <div className='heroes'>
-                {currentHeroes.length > 0 ? 
-                (
-                    <div className="heroes-gallery">
+                {filteredHeroes.length === 0 ? 
+                ( <p className="no-heroes-message">Дані не знайдено.</p> ) :
+                  ( <div className="heroes-gallery">
                     {currentHeroes.map(hero => (
                         <div key={hero.id} className="hero-profile">
                             <img src={hero.img} alt={hero.name} />
@@ -115,16 +111,14 @@ const Heroes = ({ onHeroClick }) => {
                                 <h2>{hero.name}</h2>
                                 <p style={{ lineHeight: '20px' }}>{hero.position} {hero.rank !== '' && '/'}</p>
                                 {hero.rank !== '' && <p style={{ lineHeight: '20px' }}>{hero.rank}</p>}
-                                <button onClick={() => onHeroClick(hero.id, hero)}>ВШАНУВАТИ ГЕРОЯ</button>
+                                <button onClick={() => handleHeroClick(hero.id, hero)}>ВШАНУВАТИ ГЕРОЯ</button>
                             </div>
                         </div>
                     ))}
                     </div>
-                ) : (
-                    <p className="no-heroes-message">Даних про цього Сміливовершника не знайдено.</p>
                 )}
             </div>
-            {isDesktop && currentHeroes.length > 0 && (
+            {isDesktop && filteredHeroes.length > 0 && (
                 <div className="pagination">
                     <button onClick={handlePrevPage} disabled={currentPage === 1}>←</button>
                     <span>{currentPage} / {totalPages}</span>
