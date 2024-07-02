@@ -10,9 +10,14 @@ const Details = () => {
     const { id } = useParams();
     const heroId = parseInt(id, 10);
     const navigate = useNavigate();
+    const hero = {};
 
     const heroData = heroesData.find(hero => hero.id === heroId);
     const [comments, setComments] = useState(heroData ? heroData.comments : []);
+
+    if (!hero) {
+        return <div>Героя не знайдено</div>;
+      }
 
     useEffect(() => {
         if (heroData) {
