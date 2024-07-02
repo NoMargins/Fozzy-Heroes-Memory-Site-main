@@ -3,9 +3,9 @@ import './heroes.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSliders } from '@fortawesome/free-solid-svg-icons';
 import { heroes as heroesData } from "../../../heroes/heroes.js";
-import { getUniqueBusinesses, filterHeroes, filterNames } from "../../../utils/heroesUtils.js";
+import { useNavigate } from 'react-router-dom';
 
-const Heroes = ({ onHeroClick }) => {
+const Heroes = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [business, setBusiness] = useState('Усі бізнеси');
     const [searchQuery, setSearchQuery] = useState('');
@@ -13,13 +13,38 @@ const Heroes = ({ onHeroClick }) => {
     const [filteredHeroes, setFilteredHeroes] = useState(heroesData);
     const heroesPerPage = window.innerWidth < 768 ? heroesData.length : 9;
     const isDesktop = window.innerWidth >= 768;
+    const navigate = useNavigate();
+
+    const getUniqueBusinesses = (heroesData) => {
+        return ['Усі бізнеси', ...heroesData.reduce((acc, hero) => {
+            if (!acc.includes(hero.business)) {
+                acc.push(hero.business);
+            }
+            return acc;
+        }, [])];
+    };
+
+    const filterHeroes = (heroesData, business, searchQuery) => {
+        return heroesData
+            .filter(hero => 
+                (business === 'Усі бізнеси' || hero.business === business) && 
+                hero.name.toLowerCase().includes(searchQuery.toLowerCase())
+            )
+            .sort((a, b) => a.name.localeCompare(b.name, 'uk', { sensitivity: 'base' }));
+    };
+
+    const filterNames = (heroesData, query) => {
+        return heroesData
+            .map(hero => hero.name)
+            .filter(name => name.toLowerCase().includes(query.toLowerCase()));
+    };
 
     useEffect(() => {
-        // Фільтрування героїв на основі вибраного бізнесу та пошукового запиту
         const updateFilteredHeroes = () => {
             if (searchQuery === '') {
                 setFilteredNames([]);
                 setFilteredHeroes(filterHeroes(heroesData, business, ''));
+                setCurrentPage(1);
             } else {
                 const names = filterNames(heroesData, searchQuery);
                 setFilteredNames(names);
@@ -55,14 +80,13 @@ const Heroes = ({ onHeroClick }) => {
     const handleNameClick = (name) => {
         setSearchQuery(name);
         setFilteredNames([]);
-        setFilteredHeroes(filterHeroes(heroesData, business, name));
     };
 
-    const handleHeroClick = (id, hero) => {
+    const handleHeroClick = (id) => {
         setSearchQuery('');
         setFilteredNames([]);
         setFilteredHeroes(heroesData);
-        onHeroClick(id, hero);
+        navigate(`/details/${id}`);
     };
 
     const uniqueBusinesses = getUniqueBusinesses(heroesData);
@@ -84,7 +108,7 @@ const Heroes = ({ onHeroClick }) => {
                         onChange={handleSearchChange}
                         style={{ color: '#fff' }}
                     />
-                    {filteredNames.length > 0 && (
+                    {searchQuery && filteredNames.length > 0 && (
                         <ul className="dropdown">
                             {filteredNames.map((name, index) => (
                                 <li key={index} onClick={() => handleNameClick(name)}>
@@ -111,7 +135,7 @@ const Heroes = ({ onHeroClick }) => {
                                 <h2>{hero.name}</h2>
                                 <p style={{ lineHeight: '20px' }}>{hero.position} {hero.rank !== '' && '/'}</p>
                                 {hero.rank !== '' && <p style={{ lineHeight: '20px' }}>{hero.rank}</p>}
-                                <button onClick={() => handleHeroClick(hero.id, hero)}>ВШАНУВАТИ ГЕРОЯ</button>
+                                <button onClick={() => handleHeroClick(hero.id)}>ВШАНУВАТИ ГЕРОЯ</button>
                             </div>
                         </div>
                     ))}

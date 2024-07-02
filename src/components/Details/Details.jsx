@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { heroes as heroesData } from '../../heroes/heroes';
-import Stars from '../Stars/Stars';
 import Footer from '../MainPage/Footer/Footer';
 import './details.scss';
 
@@ -42,7 +41,6 @@ const Details = () => {
                     <div className="hero-image">
                         <img src={heroData.img} alt={heroData.name} />
                         <div className='hero-info'>
-                            {/* <img src="https://preview.8.co.ua/foto/stars.svg" alt='stars' />  */}
                             <h2 style={{ textAlign: "center" }}>{heroData.name}</h2>
                             <p>{heroData.birthday} - {heroData.deathday}</p>
                             <p>{heroData.position}</p>
