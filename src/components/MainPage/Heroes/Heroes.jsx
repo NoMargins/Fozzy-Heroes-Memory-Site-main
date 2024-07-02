@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './heroes.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSliders } from '@fortawesome/free-solid-svg-icons';
@@ -14,6 +14,7 @@ const Heroes = () => {
     const heroesPerPage = window.innerWidth < 768 ? heroesData.length : 9;
     const isDesktop = window.innerWidth >= 768;
     const navigate = useNavigate();
+    const heroesContainerRef = useRef(null); // Ref для контейнера героїв
 
     const getUniqueBusinesses = (heroesData) => {
         return ['Усі бізнеси', ...heroesData.reduce((acc, hero) => {
@@ -63,12 +64,14 @@ const Heroes = () => {
     const handleNextPage = () => {
         if (currentPage < totalPages) {
             setCurrentPage(currentPage + 1);
+            heroesContainerRef.current.scrollIntoView({ behavior: 'smooth' }); // Прокрутка до вершини компонента
         }
     };
 
     const handlePrevPage = () => {
         if (currentPage > 1) {
             setCurrentPage(currentPage - 1);
+            heroesContainerRef.current.scrollIntoView({ behavior: 'smooth' }); // Прокрутка до вершини компонента
         }
     };
 
@@ -96,7 +99,7 @@ const Heroes = () => {
     const currentHeroes = filteredHeroes.slice(indexOfFirstHero, indexOfLastHero);
 
     return (
-        <div className="heroes-container">
+        <div className="heroes-container" ref={heroesContainerRef}>
             <h1 className="title">НЕБЕСНІ ВОЇНИ РОДИНИ FOZZY GROUP</h1>
             <div className="search-panel">
                 <FontAwesomeIcon icon={faSliders} style={{ color: "#ffffff" }} />

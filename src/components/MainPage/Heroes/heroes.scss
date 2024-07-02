@@ -76,10 +76,11 @@
 
 .heroes-gallery {
     display: grid;
-    max-width: 80%;
-    margin: 10px auto;
+    max-width: 70%;
+    margin: auto;
+    justify-items: center;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+    gap: 24px;
 
     @media screen and (max-width: 768px) {
         grid-template-columns: repeat(1, 1fr);
@@ -213,6 +214,7 @@
     .heroes-gallery {
         max-width: 100%;
         grid-template-columns: repeat(1, 1fr);
+        gap: 18px;
     }
 
     // .hero-profile {

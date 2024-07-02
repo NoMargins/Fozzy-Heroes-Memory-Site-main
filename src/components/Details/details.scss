@@ -28,9 +28,9 @@
     align-items: center;
     margin-right: 10px;
 
-    @media (min-width: 769px) {
-        width: 35%; /* Встановлено ширину 35% */
-    }
+    // @media (min-width: 769px) {
+    //     width: 35%; /* Встановлено ширину 35% */
+    // }
 
     & img {
         width: 100%;
@@ -43,7 +43,7 @@
         padding: 8px;
         width: 100%;
         max-width: 300px;
-        background-color: rgba(0, 0, 0, 0.4);
+        background: rgba(0, 0, 0, 0.6);
         border-radius: 0 0 10px 10px;
 
         & img {
@@ -143,9 +143,9 @@
 
 .comment-form {
     width: 100%;
-    max-width: 600px;
-    background-color: rgba(0, 0, 0, 0.4);
-    margin: 20px auto;
+    // max-width: 600px;
+    background-color: rgba(0, 0, 0, 0.6);
+    // margin: 20px auto;
     padding: 20px;
     padding-top: 8px;
     border-radius: 10px;
@@ -187,7 +187,7 @@
 
 .comments {
     width: 100%;
-    max-width: 600px;
+    // max-width: 600px;
     z-index: 12;
     margin: auto;
     margin-top: 8px;
