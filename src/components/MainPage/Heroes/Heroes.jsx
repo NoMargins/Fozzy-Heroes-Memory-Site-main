@@ -101,8 +101,7 @@ const Heroes = () => {
     };
 
     const handleNameClick = (name) => {
-        setSearchQuery(name);
-        setFilteredNames([]);
+        setFilteredNames([]); // Очистити пропозиції після вибору
     };
 
     const handleHeroClick = (id) => {
