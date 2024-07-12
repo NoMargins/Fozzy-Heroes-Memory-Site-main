@@ -1,29 +1,37 @@
+// Details.js
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { heroes as heroesData } from '../../heroes/heroes';
 import Footer from '../MainPage/Footer/Footer';
+import SimilarHeroes from './SimilarHeroes/SimilarHeroes';
 import './details.scss';
 
 const Details = () => {
     const [name, setName] = useState('');
     const [comment, setComment] = useState('');
+    const [similarHeroes, setSimilarHeroes] = useState([]);
+
     const { id } = useParams();
     const heroId = parseInt(id, 10);
     const navigate = useNavigate();
-    const hero = {};
 
     const heroData = heroesData.find(hero => hero.id === heroId);
     const [comments, setComments] = useState(heroData ? heroData.comments : []);
 
-    if (!hero) {
-        return <div>Героя не знайдено</div>;
-      }
-
     useEffect(() => {
         if (heroData) {
             setComments(heroData.comments || []);
+            // Фільтрація подібних героїв за ключем бізнес
+            const filteredHeroes = heroesData.filter(
+                h => h.id !== heroId && h.business === heroData.business
+            );
+            setSimilarHeroes(filteredHeroes);
         }
-    }, [heroData]);
+    }, [heroData, heroId]);
+
+    if (!heroData) {
+        return <div>Героя не знайдено</div>;
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -34,19 +42,16 @@ const Details = () => {
         }
     };
 
-    if (!heroData) {
-        return <div>Героя не знайдено</div>;
-    }
-
     return (
         <>
             <div className="details">
+            <div className="stars"></div>
                 <div className="return-btn" onClick={() => navigate("/")}>← На головну</div>
                 <div className="details-content">
                     <div className="hero-image">
                         <img src={heroData.img} alt={heroData.name} />
                         <div className='hero-info'>
-                            <h2 style={{ textAlign: "center" }}>{heroData.name}</h2>
+                            <h2 style={{ textAlign: "center", lineHeight: '1.8rem' }}>{heroData.name}</h2>
                             <p>{heroData.birthday} - {heroData.deathday}</p>
                             <p>{heroData.position}</p>
                             <p dangerouslySetInnerHTML={{ __html: heroData.division }}></p>
@@ -89,6 +94,7 @@ const Details = () => {
                     </div>
                 </div>
             </div>
+            <SimilarHeroes heroes={similarHeroes} business={heroData.business} />
             <Footer />
         </>
     );

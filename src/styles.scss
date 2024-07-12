@@ -61,23 +61,178 @@ body, html {
   }
 }
 
-.starry-background {
-  position: relative;
-  width: 100%;
-  background: linear-gradient(to bottom, $top-color, $middle-color, $mid-middle-color, $bottom-color, $super-bottom-color);
-  background-image: 
-   url('./img/back.jpg'), 
-   linear-gradient(to bottom, $top-color, $middle-color, $mid-middle-color, $bottom-color, $super-bottom-color);
-  background-blend-mode: overlay;
-  filter: blur(0.5px);
-  transition: opacity 0.3s ease;
+p {
+  font-size: 16px; /* Звичайний розмір шрифту */
+  
+  @media screen and (max-width: 340px) {
+    font-size: 14px; /* Розмір шрифту для мобільних пристроїв з шириною менше 340px */
+  }
 }
 
-@keyframes blink {
-  0%, 100% {
-      opacity: 1;
+body {
+  font-size: 16px; /* Базовий розмір шрифту */
+}
+
+h1 {
+  font-size: 32px;
+}
+
+h2 {
+  font-size: 28px;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+h4 {
+  font-size: 20px;
+}
+
+h5 {
+  font-size: 18px;
+}
+
+h6 {
+  font-size: 16px;
+}
+
+p {
+  font-size: 16px;
+}
+
+small {
+  font-size: 14px;
+}
+
+button, input, select, textarea {
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  h1 {
+      font-size: 28px;
   }
-  50% {
-      opacity: 0.5;
+
+  h2 {
+      font-size: 24px;
+  }
+
+  h3 {
+      font-size: 20px;
+  }
+
+  h4 {
+      font-size: 18px;
+  }
+
+  h5 {
+      font-size: 16px;
+  }
+
+  h6 {
+      font-size: 14px;
+  }
+
+  p {
+      font-size: 14px;
+  }
+
+  small {
+      font-size: 12px;
+  }
+
+  button, input, select, textarea {
+      font-size: 14px;
   }
 }
+
+@media (max-width: 480px) {
+  h1 {
+      font-size: 24px;
+  }
+
+  h2 {
+      font-size: 20px;
+  }
+
+  h3 {
+      font-size: 18px;
+  }
+
+  h4 {
+      font-size: 16px;
+  }
+
+  h5 {
+      font-size: 14px;
+  }
+
+  h6 {
+      font-size: 12px;
+  }
+
+  p {
+      font-size: 14px;
+  }
+
+  small {
+      font-size: 12px;
+  }
+
+  button, input, select, textarea {
+      font-size: 14px;
+  }
+}
+
+@media (max-width: 340px) {
+  h1 {
+      font-size: 20px;
+  }
+
+  h2 {
+      font-size: 18px;
+  }
+
+  h3 {
+      font-size: 16px;
+  }
+
+  h4 {
+      font-size: 14px;
+  }
+
+  h5 {
+      font-size: 13px;
+  }
+
+  h6 {
+      font-size: 12px;
+  }
+
+  p {
+      font-size: 14px;
+  }
+
+  small {
+      font-size: 12px;
+  }
+
+  button, input, select, textarea {
+      font-size: 14px;
+  }
+}
+
+.loading-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh; /* Повна висота вікна перегляду */
+  background: linear-gradient(to bottom, #000080, #87CEEB, #FFD700); /* Градієнтний фон */
+  color: #2a3563; 
+  font-size: 1.5rem; 
+  font-family: 'Silpo', sans-serif; 
+}
+
+

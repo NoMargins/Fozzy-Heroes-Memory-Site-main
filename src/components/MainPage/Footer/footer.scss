@@ -4,13 +4,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 20px;
-    background-color: #2a3563;
-    color: white;
+    padding: 8px 20px;
+    background: linear-gradient(to bottom, #F0E68C, #ffd700);
     text-align: center;
 
     p {
-        color: white;
+        color: #2a3564;
         text-transform: uppercase;
         line-height: 24px;
         margin: 10px 0; /* Доданий відступ для покращення читабельності */
@@ -19,10 +18,10 @@
     button {
         padding: 16px;
         margin: 20px auto;
-        border: 1px solid white;
+        border: 1px solid #2a3564;
         border-radius: 20px;
         background: none;
-        color: white;
+        color: #2a3564;
         font-size: 18px;
         letter-spacing: 3px;
         text-transform: uppercase;
@@ -30,7 +29,7 @@
         &:hover {
             cursor: pointer;
             background-color: #FFA500;
-            transition: background-color 0.5s ease;
+            transition: background-color 1s ease;
         }
     }
 
@@ -38,24 +37,20 @@
         padding: 15px;
 
         p {
-            font-size: 14px; /* Зменшено розмір тексту для менших екранів */
             line-height: 20px;
         }
 
         button {
-            font-size: 16px; /* Зменшено розмір тексту кнопки для менших екранів */
             padding: 12px; /* Зменшено відступи кнопки для менших екранів */
         }
     }
 
     @media (max-width: 480px) {
         p {
-            font-size: 12px; /* Ще більше зменшено розмір тексту для найменших екранів */
             line-height: 18px;
         }
 
         button {
-            font-size: 14px; /* Зменшено розмір тексту кнопки для найменших екранів */
             padding: 10px; /* Зменшено відступи кнопки для найменших екранів */
         }
     }

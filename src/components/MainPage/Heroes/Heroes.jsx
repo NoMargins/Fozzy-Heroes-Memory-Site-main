@@ -1,16 +1,26 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './heroes.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSliders } from '@fortawesome/free-solid-svg-icons';
+import { faArrowUpAZ, faArrowDownAZ } from '@fortawesome/free-solid-svg-icons';
 import { heroes as heroesData } from "../../../heroes/heroes.js";
 import { useNavigate } from 'react-router-dom';
+
+// Функція для перемішування масиву
+const shuffleArray = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+};
 
 const Heroes = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [business, setBusiness] = useState('Усі бізнеси');
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredNames, setFilteredNames] = useState([]);
-    const [filteredHeroes, setFilteredHeroes] = useState(heroesData);
+    const [filteredHeroes, setFilteredHeroes] = useState(shuffleArray([...heroesData]));
+    const [isStraightAlphabetic, setIsStraightAlphabetic] = useState(null); // Початковий стан не визначений
     const heroesPerPage = window.innerWidth < 768 ? heroesData.length : 9;
     const isDesktop = window.innerWidth >= 768;
     const navigate = useNavigate();
@@ -26,12 +36,23 @@ const Heroes = () => {
     };
 
     const filterHeroes = (heroesData, business, searchQuery) => {
-        return heroesData
+        let filtered = heroesData
             .filter(hero => 
                 (business === 'Усі бізнеси' || hero.business === business) && 
                 hero.name.toLowerCase().includes(searchQuery.toLowerCase())
-            )
-            .sort((a, b) => a.name.localeCompare(b.name, 'uk', { sensitivity: 'base' }));
+            );
+
+        if (isStraightAlphabetic !== null) {
+            if (isStraightAlphabetic) {
+                filtered = filtered.sort((a, b) => a.name.localeCompare(b.name, 'uk', { sensitivity: 'base' }));
+            } else {
+                filtered = filtered.sort((a, b) => b.name.localeCompare(a.name, 'uk', { sensitivity: 'base' }));
+            }
+        } else {
+            filtered = shuffleArray(filtered);
+        }
+
+        return filtered;
     };
 
     const filterNames = (heroesData, query) => {
@@ -42,18 +63,17 @@ const Heroes = () => {
 
     useEffect(() => {
         const updateFilteredHeroes = () => {
+            setFilteredHeroes(filterHeroes([...heroesData], business, searchQuery));
             if (searchQuery === '') {
                 setFilteredNames([]);
-                setFilteredHeroes(filterHeroes(heroesData, business, ''));
                 setCurrentPage(1);
             } else {
-                const names = filterNames(heroesData, searchQuery);
+                const names = filterNames([...heroesData], searchQuery);
                 setFilteredNames(names);
-                setFilteredHeroes(filterHeroes(heroesData, business, searchQuery));
             }
         };
         updateFilteredHeroes();
-    }, [searchQuery, business]);
+    }, [searchQuery, business, isStraightAlphabetic]);
 
     useEffect(() => {
         if (currentPage > totalPages) {
@@ -88,8 +108,16 @@ const Heroes = () => {
     const handleHeroClick = (id) => {
         setSearchQuery('');
         setFilteredNames([]);
-        setFilteredHeroes(heroesData);
+        setFilteredHeroes(shuffleArray([...heroesData]));
         navigate(`/details/${id}`);
+    };
+
+    const handleSortChange = () => {
+        if (isStraightAlphabetic === null || isStraightAlphabetic === false) {
+            setIsStraightAlphabetic(true);
+        } else {
+            setIsStraightAlphabetic(false);
+        }
     };
 
     const uniqueBusinesses = getUniqueBusinesses(heroesData);
@@ -100,16 +128,20 @@ const Heroes = () => {
 
     return (
         <div className="heroes-container" ref={heroesContainerRef}>
+            <div className="stars"></div>
             <h1 className="title">НЕБЕСНІ ВОЇНИ РОДИНИ FOZZY GROUP</h1>
             <div className="search-panel">
-                <FontAwesomeIcon icon={faSliders} style={{ color: "#ffffff" }} />
+                <FontAwesomeIcon 
+                    icon={isStraightAlphabetic === null ? faArrowUpAZ : (isStraightAlphabetic ? faArrowUpAZ : faArrowDownAZ)} 
+                    style={{ color: '#FFF', fontSize: '1.5rem' }} 
+                    onClick={handleSortChange} 
+                />
                 <div className="search-box">
                     <input
                         type="text"
                         placeholder="ПІБ"
                         value={searchQuery}
                         onChange={handleSearchChange}
-                        style={{ color: '#fff' }}
                     />
                     {searchQuery && filteredNames.length > 0 && (
                         <ul className="dropdown">
@@ -123,7 +155,7 @@ const Heroes = () => {
                 </div>
                 <select onChange={(e) => setBusiness(e.target.value)} value={business}>
                     {uniqueBusinesses.map(option => (
-                        <option key={option} value={option}>{option}</option>
+                        <option key={option} value={option} style={{fontFamily: 'Silpo'}}>{option}</option>
                     ))}
                 </select>
             </div>
@@ -132,13 +164,13 @@ const Heroes = () => {
                 ( <p className="no-heroes-message">Дані не знайдено.</p> ) :
                   ( <div className="heroes-gallery">
                     {currentHeroes.map(hero => (
-                        <div key={hero.id} className="hero-profile">
+                        <div key={hero.id} className="hero-profile" onClick={() => handleHeroClick(hero.id)}>
                             <img src={hero.img} alt={hero.name} />
                             <div className="hero-info">
                                 <h2>{hero.name}</h2>
                                 <p style={{ lineHeight: '20px' }}>{hero.position} {hero.rank !== '' && '/'}</p>
                                 {hero.rank !== '' && <p style={{ lineHeight: '20px' }}>{hero.rank}</p>}
-                                <button onClick={() => handleHeroClick(hero.id)}>ВШАНУВАТИ ГЕРОЯ</button>
+                                <button>ВШАНУВАТИ ГЕРОЯ</button>
                             </div>
                         </div>
                     ))}
@@ -147,9 +179,9 @@ const Heroes = () => {
             </div>
             {isDesktop && filteredHeroes.length > 0 && (
                 <div className="pagination">
-                    <button onClick={handlePrevPage} disabled={currentPage === 1}>←</button>
+                    <button onClick={handlePrevPage} disabled={currentPage === 1}>&larr;</button>
                     <span>{currentPage} / {totalPages}</span>
-                    <button onClick={handleNextPage} disabled={currentPage === totalPages}>→</button>
+                    <button onClick={handleNextPage} disabled={currentPage === totalPages}>&rarr;</button>
                 </div>
             )}
         </div>

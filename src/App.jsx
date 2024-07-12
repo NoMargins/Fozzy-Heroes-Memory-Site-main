@@ -11,7 +11,7 @@ const App = () => {
     return (
         <Router>
             <SkrollTop />
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<div className="loading-fallback">Завантаження...</div>}>
                 <Routes>
                     <Route path="/" element={<MainPage />} />
                     <Route path="/details/:id" element={<Details />} />

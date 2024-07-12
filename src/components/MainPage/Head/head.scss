@@ -5,7 +5,7 @@
     display: flex;
     justify-content: center;
     align-items: center; /* Центрування тексту вертикально */
-    background-image: url('https://preview.8.co.ua/foto/back.jpg');
+    background-image: url('https://preview.8.co.ua/foto/back.png');
     background-repeat: no-repeat;
     background-size: cover;
 
@@ -22,9 +22,8 @@
 }
 
 .top-text {
-    font-size: 1.5rem;
     color: #ffffff;
-    font-family: "Font";
+    font-family: "Silpo";
     margin: 20px;
     position: absolute;
     top: 0;
@@ -32,7 +31,6 @@
     transform: translateX(-50%);
 
     @media (max-width: 768px) {
-        font-size: 1rem;
         margin: 10px 0;
         padding: 8px;
         width: 100vw;
