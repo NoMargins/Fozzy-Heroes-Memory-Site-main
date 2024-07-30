@@ -3,7 +3,7 @@
 /* Перший шрифт */
 @font-face {
   font-family: 'SilpoBold';
-  src: url('./fonts/Comfortaa-Bold.ttf') format('truetype');
+  src: url('../fonts/Comfortaa-Bold.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
@@ -11,7 +11,7 @@
 /* Другий шрифт */
 @font-face {
   font-family: 'Silpo';
-  src: url('./fonts/SilpoRounded-Regular.woff') format('woff');
+  src: url('../fonts/SilpoRounded-Regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -19,7 +19,7 @@
 /* Третій шрифт */
 @font-face {
   font-family: 'SilpoMedium';
-  src: url('./fonts/SansRoundedC_0.otf') format('opentype');
+  src: url('../fonts/SansRoundedC_0.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
@@ -38,27 +38,20 @@ body, html {
 }
 
 #root {
-  display: flex;
-  flex-direction: column;
+  // display: flex;
+  // flex-direction: column;
   // min-height: 100vh;
-  align-items: center;
-  justify-content: center;
+  // align-items: center;
+  // justify-content: center;
   box-sizing: border-box;
   background-color: #2a3564;
 }
 
-.scroll-down {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 2rem;
-  color: #FFF7A8;
-  animation: blink 1s infinite;
-
-  &.head {
-    color: #2A52BE;
-  }
+#root > * {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 p {
@@ -234,5 +227,3 @@ button, input, select, textarea {
   font-size: 1.5rem; 
   font-family: 'Silpo', sans-serif; 
 }
-
-

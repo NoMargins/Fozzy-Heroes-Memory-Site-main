@@ -16,10 +16,11 @@
             color: white;
             letter-spacing: 1px;
             text-align: center;
-            text-transform: uppercase;
+            // text-transform: uppercase;
 
             @media screen and (max-width: 768px) and (min-width: 341px) {
                 width: 90%;
+                font-size: 12px;
         }
     }
     }
@@ -35,12 +36,28 @@
     }
 }
 
-.scroll-down {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 2rem;
-    color: #FFF7A8;
-    animation: blink 1s infinite;
+.report-btn {
+        padding: 16px;
+        margin: 20px auto;
+        border: 1px solid #fff;
+        border-radius: 20px;
+        background: none;
+        color: #fff;
+        font-size: 18px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        
+        &:hover {
+            cursor: pointer;
+            background-color: #FFA500;
+            transition: background-color 1s ease;
+        }
+
+        @media (max-width: 768px) {
+            padding: 12px;
+        }
+        @media (max-width: 480px) {
+            padding: 8px;
+            font-size: 14px;
+        }
 }

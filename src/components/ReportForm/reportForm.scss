@@ -1,0 +1,110 @@
+.modal-dialog {
+
+    & input {
+        margin-top: 0px;
+        margin-bottom: 8px;
+    }
+
+
+    .report-btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #FFD700;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        text-transform: uppercase;
+        color: #2a3563;
+
+        &:hover {
+            background-color: #FFA500;
+            transition: background-color 0.3s ease;
+        }
+    }
+
+    .modal-content {
+        background-color: #2a3564;
+        color: white;
+        border-radius: 10px;
+    }
+
+    .modal-header {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+        text-align: center;
+        display: flex;
+        justify-content: center; // Центрування заголовка
+        width: 100%; // Розтягнути заголовок на всю ширину
+
+    }
+
+    .modal-title {
+        font-family: 'Silpo', sans-serif;
+        color: #FFD700;
+        text-align: center;
+        font-size: 18px;
+        width: 100%; // Розтягнути заголовок на всю ширину
+        flex: 1; // Центрування заголовка
+
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    .form-label {
+        font-family: 'Silpo', sans-serif;
+        color: #FFD700;
+    }
+
+    .form-control {
+        background-color: #f0e68c;
+        border: none;
+        border-radius: 5px;
+        color: #2a3563;
+
+        &::placeholder {
+            color: #2a3563;
+        }
+    }
+
+    .form-control:focus {
+        background-color: #fff;
+        color: #2a3563;
+        box-shadow: none;
+    }
+
+    .g-recaptcha {
+        margin: 1rem 0;
+    }
+
+    .submit-button-container {
+        display: flex;
+        justify-content: center; 
+        margin-top: 1rem; 
+    }
+
+    .btn-primary {
+        background-color: #FFD700;
+        border: none;
+        color: #2a3563;
+        border-radius: 20px;
+        padding: 10px 20px;
+        text-transform: uppercase;
+        font-family: 'Silpo', sans-serif;
+        margin: 16px auto 8px;
+        display: block; 
+
+
+        &:hover {
+            background-color: #FFA500;
+            transition: background-color 0.3s ease;
+        }
+
+        &:disabled {
+            background-color: #ddd;
+            cursor: not-allowed;
+        }
+    }
+}

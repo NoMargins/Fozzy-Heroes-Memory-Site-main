@@ -1,0 +1,54 @@
+.footer {
+    width: 100vw;
+    // height: 100%;
+    padding: 8px 20px;
+    background: linear-gradient(to bottom, #F0E68C, #ffd700);
+    text-align: center;
+
+    p {
+        color: #2a3564;
+        // text-transform: uppercase;
+        line-height: 24px;
+        margin: 10px 0;
+    }
+
+    button {
+        padding: 16px;
+        margin: 20px auto;
+        border: 1px solid #2a3564;
+        border-radius: 20px;
+        background: none;
+        color: #2a3564;
+        font-size: 18px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        
+        &:hover {
+            cursor: pointer;
+            background-color: #FFA500;
+            transition: background-color 1s ease;
+        }
+    }
+
+    @media (max-width: 768px) {
+        padding: 15px;
+
+        p {
+            line-height: 20px;
+        }
+
+        button {
+            padding: 12px; /* Зменшено відступи кнопки для менших екранів */
+        }
+    }
+
+    @media (max-width: 480px) {
+        p {
+            line-height: 18px;
+        }
+
+        button {
+            padding: 10px; /* Зменшено відступи кнопки для найменших екранів */
+        }
+    }
+}

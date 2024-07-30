@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Head from './Head/Head';
 import Description from './Description/Description';
 import Heroes from './Heroes/Heroes';
-import Footer from './Footer/Footer';
+import Footer from '../Footer/Footer';
 
 const MainPage = () => {
     const [scrollY, setScrollY] = useState(0);

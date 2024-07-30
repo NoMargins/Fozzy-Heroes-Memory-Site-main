@@ -107,6 +107,7 @@
 
     
     @media screen and (max-width: 768px) {
+        width: 100%;
         margin: 16px auto 20px;
 
         & input {
@@ -117,7 +118,7 @@
 
 .heroes-gallery {
     display: grid;
-    max-width: 70%;
+    max-width: 80%;
     margin: auto;
     justify-items: center;
     grid-template-columns: repeat(3, 1fr);
@@ -126,7 +127,6 @@
 
     @media screen and (max-width: 768px) {
         grid-template-columns: repeat(1, 1fr);
-        max-width: 80%;
 
     //    & img {
     //         height: 500px;
@@ -193,16 +193,18 @@
 
         button {
             width: 90%;
-            background-color: #fff;
-            border: none;
+            background-color: transparent;
+            border: 1px solid #fff;
             border-radius: 20px;
             padding: 0.5rem 1rem;
+            color: #fff;
             cursor: pointer;
             text-transform: uppercase;
 
             &:hover {
                 background-color: #FFA500;
                 transition: background-color 1s ease;
+                // color: #2a3563b3;
             }
 
             @media screen and (max-width: 768px){

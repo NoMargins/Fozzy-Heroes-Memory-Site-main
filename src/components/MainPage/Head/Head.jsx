@@ -1,11 +1,18 @@
 import React from 'react';
-import Stars from '../../Stars/Stars';
+import backImage from '../../../../img/back.png';
+
 import './head.scss';
 
-const Head = ({ scrollY }) => {
+const styles = {
+    backgroundImage: `url(${backImage})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+  };
+
+const Head = () => {
     return (
-        <div className="head">
-             <p className="top-text">ГЕРОЇ НЕ ВМИРАЮТЬ!</p>
+    <div className="head" style={styles}>
+            <p className="top-text">ГЕРОЇ НЕ ВМИРАЮТЬ!</p>
             <div className="head-back">
                 <div className="text-content">
                     <h2 className="subtitle">ПОРТАЛ</h2>

@@ -1,0 +1,114 @@
+.similar-heroes {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    background-color: #f0e68c;
+
+    h3 {
+        text-align: center;
+        margin: 8px;
+        color: #2a3564;
+    }
+}
+
+.heroes-list-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+.pagination-button {
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #2a3564;
+    background: transparent;
+
+    &:disabled {
+        cursor: not-allowed;
+        opacity: 0;
+    }
+}
+
+.heroes-list {
+    height: 215px;
+    display: flex;
+    overflow-x: auto;
+    flex-grow: 1;
+    align-items: flex-end;
+    justify-content: center;
+    overflow-y: hidden; // Прибираємо можливість вертикальної прокрутки
+}
+
+.hero-preview {
+    margin: 0 10px;
+    text-align: center;
+    width: 150px; // Фіксована ширина для профіля
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 1s ease; // Плавна анімація
+
+    img {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+    }
+
+    &:hover {
+        transform: scale(1.1); 
+        z-index: 2; 
+    }
+
+    p {
+        margin-top: 10px;
+        position: relative;
+        z-index: 1;
+        line-height: 14pt;
+        color: #2a3564;
+    }
+}
+
+// Адаптивні стилі для мобільних екранів
+@media (max-width: 768px) {
+    .hero-preview {
+        width: 200px; // Менша ширина для мобільних екранів
+        height: 220px;
+
+        img {
+            width: 150px;
+            height: 150px;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .heroes-list {
+        height: auto;
+    }
+
+    .hero-preview {
+        width: auto; 
+        height: 140px;
+
+        img {
+            width: 80px;
+            height: 80px;
+        }
+
+        p {
+            margin-top: 8px; 
+            font-size: 12px;
+        }
+    }
+
+    .pagination-button {
+        font-size: 1.5rem; // Зменшення розміру кнопок пагінації
+    }
+}

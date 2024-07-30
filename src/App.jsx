@@ -1,23 +1,24 @@
 import React, { lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import SkrollTop from './utils/SkrollTop.jsx';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.scss';
 
 // Lazy loading components
 const MainPage = lazy(() => import('./components/MainPage/MainPage.jsx'));
-const Details = lazy(() => import('./components/Details/Details.jsx'));
+const FullInfo = lazy(() => import('./components/FullInfo/FullInfo.jsx'));
 
 const App = () => {
     return (
-        <Router>
+        <>
             <SkrollTop />
             <Suspense fallback={<div className="loading-fallback">Завантаження...</div>}>
                 <Routes>
                     <Route path="/" element={<MainPage />} />
-                    <Route path="/details/:id" element={<Details />} />
+                    <Route path="/details/:id" element={<FullInfo />} />
                 </Routes>
             </Suspense>
-        </Router>
+        </>
     );
 };
 
